@@ -130,7 +130,7 @@
     // getting detail controller - TorrentListController
     // on iPad it is already created on start
     // on iPhone it should be created from storyboard
-    if( self.splitViewController )
+    if( self.splitViewController && self.splitViewController.viewControllers.count > 1)
     {
         // left (detail) controller should be NavigationContoller with our TorrentListController
         UINavigationController *rightNav = self.splitViewController.viewControllers[1];
@@ -636,7 +636,7 @@
     _speedLimitController.title =  NSLocalizedString(@"Download speed limits", @"_speedLimitController title");
     _speedLimitController.isDownload = YES;
     
-    if( self.splitViewController )
+    if( self.splitViewController && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
     {
         if( _speedPopOver && _speedPopOver.isPopoverVisible )
             [_speedPopOver dismissPopoverAnimated:YES];
@@ -662,7 +662,7 @@
     _speedLimitController.title =  NSLocalizedString(@"Upload speed limits", @"_speedLimitController title");
     _speedLimitController.isDownload = NO;
     
-    if( self.splitViewController )
+    if( self.splitViewController && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
     {
         if( _speedPopOver && _speedPopOver.isPopoverVisible )
             [_speedPopOver dismissPopoverAnimated:YES];

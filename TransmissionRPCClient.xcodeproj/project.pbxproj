@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27B9258F25A3A389004D10F1 /* LaunchStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27B9258E25A3A389004D10F1 /* LaunchStoryboard.storyboard */; };
 		2C039F3B1B52D33C00233534 /* StatusCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C039F3A1B52D33C00233534 /* StatusCategory.m */; };
 		2C039F3E1B52D3DD00233534 /* StatusCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C039F3D1B52D3DD00233534 /* StatusCategories.m */; };
 		2C0688731B948C32008B69EE /* MagnetURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0688721B948C32008B69EE /* MagnetURL.m */; };
@@ -90,6 +91,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27B9258E25A3A389004D10F1 /* LaunchStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchStoryboard.storyboard; sourceTree = "<group>"; };
 		2C039F391B52D33C00233534 /* StatusCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusCategory.h; sourceTree = "<group>"; };
 		2C039F3A1B52D33C00233534 /* StatusCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusCategory.m; sourceTree = "<group>"; };
 		2C039F3C1B52D3DD00233534 /* StatusCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusCategories.h; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				2C5810E01B39A5E50069020D /* Images.xcassets */,
 				2C5810DA1B39A5E50069020D /* Info.plist */,
 				2C5810DB1B39A5E50069020D /* main.m */,
+				27B9258E25A3A389004D10F1 /* LaunchStoryboard.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -687,8 +690,8 @@
 				TargetAttributes = {
 					2C5810D51B39A5E50069020D = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = FGPFWZ8YAM;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 8DS52AR69U;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -705,6 +708,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				ru,
@@ -727,6 +731,7 @@
 				2CF6909F1B4BE49600B2F830 /* HeaderViewDURates.xib in Resources */,
 				2CFB9BA61B56FA1300D4A51C /* Localizable.strings in Resources */,
 				2CFB92CD1B56D25400C83354 /* controllers.storyboard in Resources */,
+				27B9258F25A3A389004D10F1 /* LaunchStoryboard.storyboard in Resources */,
 				2C5810E11B39A5E50069020D /* Images.xcassets in Resources */,
 				2CF964F11B4D5DB9006D8C7E /* docIcon_320x320.png in Resources */,
 				2CF6909C1B4BE0D400B2F830 /* FooterViewFreeSpace.xib in Resources */,
@@ -909,8 +914,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Alexey Chechetkin (FGPFWZ8YAM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Alexey Chechetkin (FGPFWZ8YAM)";
+				CODE_SIGN_IDENTITY = "Apple Development: Othonas Antoniou (6KMEBF2B73)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Othonas Antoniou (6KMEBF2B73)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -990,17 +995,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FGPFWZ8YAM;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8DS52AR69U;
 				INFOPLIST_FILE = TransmissionRPCClient/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alcheck.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ozzotto.TransmissionRPCClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ozzotto_Dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1009,17 +1015,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FGPFWZ8YAM;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8DS52AR69U;
 				INFOPLIST_FILE = TransmissionRPCClient/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alcheck.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ozzotto.TransmissionRPCClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ozzotto_Dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
