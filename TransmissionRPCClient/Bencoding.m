@@ -98,6 +98,9 @@ NSString* decodeString()
     *p = '\0';
     NSString *str = [NSString stringWithCString:p0 encoding: NSUTF8StringEncoding];
     *p = c;
+    if (str == nil) {
+        return @"";
+    }
     return str;
 }
 

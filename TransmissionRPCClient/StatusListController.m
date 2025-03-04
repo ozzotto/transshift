@@ -21,6 +21,7 @@
 #import "InfoMessage.h"
 #import "RateLimitTable.h"
 #import "StatusCategories.h"
+#import "TorrentFile.h"
 
 #define POPOVER_LIMITSPEEDCONTROLLER_SIZE   CGSizeMake(220,400)
 
@@ -34,7 +35,8 @@
                                     SpeedLimitControllerDelegate,
                                     UIAlertViewDelegate,
                                     UIPopoverControllerDelegate,
-                                    UISplitViewControllerDelegate>
+                                    UISplitViewControllerDelegate,
+                                    UIDocumentPickerDelegate>
 
 @end
 
@@ -192,11 +194,14 @@
     
     self.toolbarItems = @[ _btnRefresh, _btnSpacer, _btnLimitUpSpeed, _btnSpacer, _btnLimitDownSpeed, _btnSpacer, _btnToggleAltLimits, _btnSpacer, _btnSessionConfig];
     
-       // configure "add torrent by url" right nav button
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconLinkAdd20x20"]
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:self
-                                                                             action:@selector(showAddTorrentByURLDialog)];
+    UIAction *addByURL = [UIAction actionWithTitle:@"Magnet Link" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self showAddTorrentByURLDialog];
+    }];
+    UIAction *addByFile = [UIAction actionWithTitle:@"Torrent File" image:nil identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self showAddTorrentByFileDialog];
+    }];
+    UIMenu *importMenu = [UIMenu menuWithChildren:@[addByURL, addByFile]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"square.and.arrow.down"] menu:importMenu];
     
     // hide check and error statuses
     _showCheckItems = NO;
@@ -607,6 +612,12 @@
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     
     [alert show];
+}
+
+- (void)showAddTorrentByFileDialog {
+    UIDocumentPickerViewController *controller = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"com.alcheck.TransmissionRPCClient.torrent"] inMode:UIDocumentPickerModeOpen];
+    controller.delegate = self;
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)gotTorrentAdded
@@ -1324,6 +1335,24 @@
     c.cell = cell;
     
     return cell;
+}
+
+#pragma mark - UIDocumentPickerDelegate
+
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray <NSURL *>*)urls {
+    NSURL *torrentURL = urls.firstObject;
+    if (torrentURL == nil) {
+        return;
+    }
+    if (![torrentURL startAccessingSecurityScopedResource]) {
+        return;
+    }
+    TorrentFile *torrentFile = [TorrentFile torrentFileWithURL:torrentURL];
+    [torrentURL stopAccessingSecurityScopedResource];
+    if (torrentFile == nil) {
+        return;
+    }
+    [_connector addTorrentWithData:torrentFile.torrentData priority:0 startImmidiately:NO];
 }
 
 @end
